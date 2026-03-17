@@ -8,6 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome für die Pfeile -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Dynamisches Favicon -->
+    <link id="dynamic-favicon" rel="icon" type="image/svg+xml" href="">
+    
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #000000; color: #ffffff; overflow-x: hidden; }
         .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); }
@@ -32,7 +36,7 @@
         
         <!-- Kurze Erklärung -->
         <p class="text-sm text-slate-400 mb-6 leading-relaxed max-w-sm">
-            Passe Form und Farbe an. Das SVG wird live gerendert und direkt als <code class="bg-black/50 px-1.5 py-0.5 rounded text-teal-300">icon_icon.webp</code> exportiert – bereit für euer GitHub Repo.
+            Passe Form und Farbe an. Das Design ändert sofort das Favicon deines Browser-Tabs in Echtzeit und lässt sich direkt passend für euer Repo exportieren.
         </p>
 
         <!-- Preview Area mit Pfeilen -->
@@ -182,6 +186,12 @@
                 container.innerHTML = fullSVG;
                 container.style.transform = 'scale(1)';
                 container.style.opacity = '1';
+                
+                // --- NEU: Dynamisches Favicon für den Browser-Tab setzen ---
+                const favicon = document.getElementById('dynamic-favicon');
+                if (favicon) {
+                    favicon.href = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(fullSVG);
+                }
                 
                 // Glow-Effekt des Containers an Farbe anpassen
                 container.style.boxShadow = `0 0 40px ${theme.glow}`;
